@@ -1,0 +1,225 @@
+Absolutely! 🍽️ Here’s a sleek, modern, single-file website template for a food menu. Everything is contained within one HTML document, including CSS and JavaScript. You can add or modify menu items and ingredients as you like!
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tasty Bites Menu</title>
+  <!-- Modern Google Font for style -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2d3748;
+      --accent: #38b2ac;
+      --bg: #f7fafc;
+      --card: #fff;
+      --text: #22223b;
+      --radius: 16px;
+      --shadow: 0 6px 32px rgba(44, 62, 80, 0.07);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 0 1rem 2rem 1rem;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 0 1rem 0;
+    }
+    header h1 {
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    header p {
+      color: #4a5568;
+      font-size: 1.1rem;
+    }
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      width: 300px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--primary);
+    }
+    .ingredients {
+      font-size: 1rem;
+      color: #555;
+      list-style: none;
+      margin-bottom: 1rem;
+    }
+    .price {
+      font-size: 1.15rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin-top: auto;
+    }
+    .search-bar {
+      width: 100%;
+      max-width: 340px;
+      margin: 2rem auto 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius);
+      font-size: 1.03rem;
+      outline: none;
+      box-sizing: border-box;
+      transition: border 0.2s;
+    }
+    .search-bar input:focus {
+      border-color: var(--accent);
+    }
+    @media (max-width: 760px) {
+      .menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🍲 Tasty Bites</h1>
+    <p>Discover our delicious menu – fresh dishes, vibrant flavors, and top ingredients!</p>
+  </header>
+  <div class="search-bar">
+    <input type="text" id="menuSearch" placeholder="Search dishes, ingredients...">
+  </div>
+  <section class="menu" id="menu"></section>
+
+    const menuItems = [
+      {
+        name: 'Classic Margherita Pizza',
+        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80',
+        ingredients: ['Fresh mozzarella', 'Tomato sauce', 'Basil', 'Olive oil'],
+        price: '12.99'
+      },
+      {
+        name: 'Thai Green Curry',
+        image: 'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=600&q=80',
+        ingredients: ['Chicken', 'Green curry paste', 'Coconut milk', 'Bamboo shoots', 'Basil'],
+        price: '14.50'
+      },
+      {
+        name: 'Avocado Toast',
+        image: 'https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=600&q=80',
+        ingredients: ['Sourdough bread', 'Avocado', 'Cherry tomatoes', 'Lemon', 'Chili flakes'],
+        price: '9.00'
+      },
+      {
+        name: 'Spaghetti Carbonara',
+        image: 'https://images.unsplash.com/photo-1523987355523-c7b5b0723cdd?auto=format&fit=crop&w=600&q=80',
+        ingredients: ['Spaghetti', 'Egg', 'Pancetta', 'Parmesan', 'Pepper'],
+        price: '13.50'
+      },
+      {
+        name: 'Caesar Salad',
+        image: 'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=600&q=80',
+        ingredients: ['Romaine lettuce', 'Croutons', 'Parmesan', 'Caesar dressing'],
+        price: '10.25'
+      },
+      {
+        name: 'Grilled Salmon Plate',
+        image: 'https://images.unsplash.com/photo-1514512364185-4c2b67877b95?auto=format&fit=crop&w=600&q=80',
+        ingredients: ['Salmon filet', 'Lemon butter', 'Asparagus', 'Herb rice'],
+        price: '18.50'
+      },
+      {
+        name: 'Vegan Buddha Bowl',
+        image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80',
+        ingredients: ['Quinoa', 'Chickpeas', 'Roast veggies', 'Avocado', 'Tahini sauce'],
+        price: '11.99'
+      },
+    ];
+
+    const menuContainer = document.getElementById('menu');
+    const menuSearch = document.getElementById('menuSearch');
+
+    function renderMenu(items) {
+      menuContainer.innerHTML = '';
+      if (!items.length) {
+        menuContainer.innerHTML = '<p style="color:#666;font-size:1.2rem;margin-top:2rem;">No dishes found.</p>';
+        return;
+      }
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <div class="card-body">
+            <div class="card-title">${item.name}</div>
+            <ul class="ingredients">
+              ${item.ingredients.map(ing => `<li>• ${ing}</li>`).join('')}
+            </ul>
+            <div class="price">$${item.price}</div>
+          </div>
+        `;
+        menuContainer.appendChild(card);
+      });
+    }
+
+    menuSearch.addEventListener('input', e => {
+      const q = e.target.value.toLowerCase();
+      const filtered = menuItems.filter(
+        item =>
+          item.name.toLowerCase().includes(q) ||
+          item.ingredients.some(ing => ing.toLowerCase().includes(q))
+      );
+      renderMenu(filtered);
+    });
+
+    // Initial render
+    renderMenu(menuItems);
+  </script>
+</body>
+</html>
+    .menu {
+  <script>
